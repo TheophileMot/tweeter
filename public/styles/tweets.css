@@ -1,0 +1,72 @@
+section.tweet-list article {
+  background-color: #eee;
+  border-radius: 5px;
+  border: #eee 2px solid;
+  margin: 2em;
+}
+
+section.tweet-list article:hover {
+  background-color: #ddd;
+  border: #888 2px solid;
+}
+
+section.tweet-list header {
+  margin: 5px;
+  height: 50px;
+}
+
+section.tweet-list img {
+  border-radius: 5px;
+  opacity: 0.5;
+}
+
+section.tweet-list article:hover img {
+  border-radius: 5px;
+  opacity: 1;
+}
+
+section.tweet-list .avatar {
+  float: left;
+}
+
+section.tweet-list .username {
+  float: left;
+  margin: 10px;
+  color: #889;
+}
+
+section.tweet-list article:hover .username {
+  color: #555;
+}
+
+section.tweet-list .handle {
+  float: right;
+  color: #889
+}
+
+section.tweet-list article:hover .handle {
+  float: right;
+  color: #555
+}
+
+section.tweet-list div.message {
+  background-color: #fff;
+  padding: 10px;
+  border-bottom: #eee 1px solid;
+}
+
+section.tweet-list footer {
+  line-height: 2em;
+  padding: 0 10px;
+  background-color: #fff
+}
+
+section.tweet-list footer .icons {
+  visibility: hidden;
+}
+
+section.tweet-list article:hover footer .icons {
+  opacity: 0.85;
+  visibility: visible;
+  float: right;
+}

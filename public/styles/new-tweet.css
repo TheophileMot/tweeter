@@ -5,12 +5,12 @@ section.new-tweet {
   margin: 2em;
 }
 
-.new-tweet h2 {
+section.new-tweet h2 {
   border-bottom: 1px solid #999;
   margin: 0;
 }
  
-.new-tweet textarea {
+section.new-tweet textarea {
   padding: 10px;
   width: 100%;
   height: 5em;
@@ -18,19 +18,19 @@ section.new-tweet {
   resize: none;
 }
 
-.new-tweet .counter {
+section.new-tweet .counter {
   float: right;
 }
 
-.new-tweet .almost-too-long {
+section.new-tweet .almost-too-long {
   color: #D80;
 }
 
-.new-tweet .too-long {
+section.new-tweet .too-long {
   color: #D00;
 }
 
-.new-tweet .way-too-long {
+section.new-tweet .way-too-long {
   color: #F00;
   font-weight: bold;
 }
