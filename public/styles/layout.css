@@ -20,6 +20,20 @@ body {
   background-color: #eee;
 }
 
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+main {
+  width: 450px;
+  background-color: #fff;
+  margin: 80px auto;
+}
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+ 
+.container {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
