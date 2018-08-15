@@ -3,6 +3,7 @@ section.tweet-list article {
   border-radius: 5px;
   border: #eee 2px solid;
   margin: 2em;
+  word-wrap: break-word;
 }
 
 section.tweet-list article:hover {
