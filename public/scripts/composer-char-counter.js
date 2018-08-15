@@ -11,24 +11,29 @@ function updateCounter($textarea) {
   }
 }
 
-function isValidLength($textarea) {
-  return $textarea.val().length > 0 && $textarea.val().length <= 140;
+function validateTweet(tweet, callback) {
+  if (!tweet.length) {
+    callback('Your message cannot be empty.');
+  } else if (tweet.length > 140) {
+    callback('Your message is too long.');
+  } else {
+    callback(null);
+  }
 }
 
 function postNewTweet($parent, $textarea) {
-  // don't do anything if form is empty or too long
-  if (!isValidLength($textarea)) {
-    let $errorMsg = createErrorMessage('Sorry, that\'s invalid!');
-    $('.new-tweet h2').prepend($errorMsg);
-    //$errorMsg.addClass('goAway');
-    return;
-  } else {
-    // post and clear form
-    let postField = $parent.serialize();
-    $.post('/tweets/', postField);
-    $textarea.val('');
-    updateCounter($textarea);
-  }
+  validateTweet($textarea.val(), (err) => {
+    if (err) {
+      let $errorMsg = createErrorMessage(err);
+      $('.new-tweet h2').prepend($errorMsg);
+    } else {
+      // post and clear form
+      let postField = $parent.serialize();
+      $.post('/tweets/', postField);
+      $textarea.val('');
+      updateCounter($textarea);
+    }
+  });
 }
 
 $(document).ready(function() {
