@@ -4,32 +4,16 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-function isValidLength($textarea) {
-  return $textarea.val().length > 0 && $textarea.val().length <= 140;
-}
-
 function createErrorMessage(msg) {
   return $('<p>').addClass('errorMsg').text(msg);
 }
 
-function postNewTweet($parent, $textarea) {
-  // don't do anything if form is empty or too long
-  if (!isValidLength($textarea)) {
-    let $errorMsg = createErrorMessage('Sorry, that\'s invalid!');
-    $('.new-tweet h2').prepend($errorMsg);
-    return;
-  } else {
-    // post and clear form
-    let postField = $parent.serialize();
-    $.post('/tweets/', postField);
-    $textarea.val('');
-    updateCounter($textarea);
-  }
+function age(tweet) {
+  return new Date() - tweet.createdAt;
 }
 
-function howLongAgo(creationDate) {
-  let timeDiff = new Date() - creationDate;
-  return (timeDiff / (365 * 24 * 60 * 60 * 1000)).toPrecision(3) + ' years ago';
+function howLongAgo(tweet) {
+  return (age(tweet) / (365 * 24 * 60 * 60 * 1000)).toPrecision(3) + ' years ago';
 }
 
 function createTweetElement(tweet) {
@@ -45,7 +29,7 @@ function createTweetElement(tweet) {
   $message.text(tweet.content.text);
 
   let $footer = $('<footer>');
-  let $footer_span_date = $('<span>').addClass('date').text(howLongAgo(tweet.createdAt));
+  let $footer_span_date = $('<span>').addClass('date').text(howLongAgo(tweet));
   let $footer_span_icons = $('<span>').addClass('icons');
   $footer_span_icons.append('<i class="fas fa-flag"></i> <i class="fas fa-recycle"></i> <i class="fas fa-heart"></i>');
   $footer.append($footer_span_date, $footer_span_icons);
@@ -58,17 +42,28 @@ function createTweetElement(tweet) {
   return $tweet;
 }
 
-function renderTweets(tweets) {
-  tweets.forEach( tweet => $('section.tweet-list').append(createTweetElement(tweet)) );
+// render a tweet or an array of tweets
+function renderTweets(tweetData) {
+  if (Array.isArray(tweetData)) {
+    tweetData.forEach( tweet => renderTweets(tweet) );
+  } else {
+    $('section.tweet-list').prepend(createTweetElement(tweetData) );
+  }
 }
 
-function loadTweets(callback) {
+function refreshAndRender(tweetData) {
+  $('section.tweet-list').text('');
+  renderTweets(tweetData);
+}
+
+// load up to n tweets and run a callback function on them after an optional filter
+//   default callback function clears the tweet container then renders the loaded tweets
+function loadTweets(maxTweets = 5, callback = tweetData => refreshAndRender(tweetData), filterFun = () => true) {
   return $.get('/tweets/')
-    .then( function(data) {
-      callback(data);
+    .done(function(data) {
+      callback(data.slice(-maxTweets).filter( d => filterFun(d) ));
     });
 }
-
 
 $(document).ready(function() {
   let $composeForm = $('.new-tweet form');
@@ -77,5 +72,5 @@ $(document).ready(function() {
     postNewTweet($(this), $(this).children('textarea'));
   });
 
-  loadTweets( tweetData => renderTweets(tweetData) );
+  loadTweets();
 });

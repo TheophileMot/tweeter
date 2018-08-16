@@ -29,9 +29,10 @@ function postNewTweet($parent, $textarea) {
     } else {
       // post and clear form
       let postField = $parent.serialize();
-      $.post('/tweets/', postField);
       $textarea.val('');
       updateCounter($textarea);
+      $.post('/tweets/', postField)
+        .done(refreshTweets());
     }
   });
 }
