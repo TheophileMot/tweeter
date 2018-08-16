@@ -35,7 +35,8 @@
   padding: 10px;
   margin: 10px;
   font-size: 1.5em;
-  line-height: 1.5; 
+  line-height: 1.5;
+  cursor: default;
 }
 
 #nav-bar:hover .button {

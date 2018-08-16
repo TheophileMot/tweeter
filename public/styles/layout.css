@@ -38,6 +38,15 @@ main {
   padding-bottom: 2em;
 }
 
-.errorMsg {
+.error-msg {
   color: #d00;
+  position: absolute;
+  float: right;
+  left: 200px;
+  width: 200px;
+  top: -20px;
+}
+
+.error-wrapper {
+  position: absolute;
 }

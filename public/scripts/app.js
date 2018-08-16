@@ -5,7 +5,7 @@
  */
 
 function createErrorMessage(msg) {
-  return $('<p>').addClass('errorMsg').text(msg);
+  return $('<p>').addClass('error-msg').text(msg);
 }
 
 function age(tweet) {
@@ -72,7 +72,9 @@ $(document).ready(function() {
     postNewTweet($(this), $(this).children('textarea'));
   });
 
-  $('#nav-bar .button').on('click', function() { $('main .new-tweet').slideToggle(200); });
+  $('#nav-bar .button').on('click', function() {
+    $('main .new-tweet').slideToggle(200, () => $('main .new-tweet textarea').focus());
+  });
 
   loadTweets();
 });

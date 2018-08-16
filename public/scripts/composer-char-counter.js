@@ -14,6 +14,8 @@ function updateCounter($textarea) {
 function validateTweet(tweet, callback) {
   if (!tweet.length) {
     callback('Your message cannot be empty.');
+  } else if (tweet.length > 200) {
+    callback('Your message is WAY too long.');
   } else if (tweet.length > 140) {
     callback('Your message is too long.');
   } else {
@@ -25,7 +27,10 @@ function postNewTweet($parent, $textarea) {
   validateTweet($textarea.val(), (err) => {
     if (err) {
       let $errorMsg = createErrorMessage(err);
-      $('.new-tweet h2').prepend($errorMsg);
+      //$errorMsg.
+      $errorMsg.fadeOut(2000);
+      $('.new-tweet .error-wrapper').append($errorMsg);
+      $errorMsg.fadeOut(3000, function() { this.remove(); });
     } else {
       // post and clear form
       let postField = $parent.serialize();
