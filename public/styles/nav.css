@@ -26,3 +26,18 @@
   font-size: 2em;
   line-height: 2.5;
 }
+
+#nav-bar .button {
+  background-color: #C0E0E8;
+  color: #00A087;
+  border-radius: 10px;
+  float: right;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.5em;
+  line-height: 1.5; 
+}
+
+#nav-bar:hover .button {
+  background-color: #E0F0F4;
+}

@@ -72,5 +72,7 @@ $(document).ready(function() {
     postNewTweet($(this), $(this).children('textarea'));
   });
 
+  $('#nav-bar .button').on('click', function() { $('main .new-tweet').slideToggle(200); });
+
   loadTweets();
 });

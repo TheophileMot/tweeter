@@ -32,7 +32,7 @@ function postNewTweet($parent, $textarea) {
       $textarea.val('');
       updateCounter($textarea);
       $.post('/tweets/', postField)
-        .done(refreshTweets());
+        .done(loadTweets());
     }
   });
 }
