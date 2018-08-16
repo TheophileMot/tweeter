@@ -72,6 +72,11 @@ $(document).ready(function() {
     postNewTweet($(this), $(this).children('textarea'));
   });
 
+  // capture cut / paste to update character counter
+  let $textarea = $('.new-tweet form textarea');
+  $textarea.bind('cut', () => setTimeout(() => updateCounter($textarea), 10));
+  $textarea.bind('paste', () => setTimeout(() => updateCounter($textarea), 10));
+
   $('#nav-bar .button').on('click', function() {
     $('main .new-tweet').slideToggle(200, () => $('main .new-tweet textarea').focus());
   });

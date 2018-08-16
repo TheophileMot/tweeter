@@ -31,6 +31,7 @@ function postNewTweet($parent, $textarea) {
       $errorMsg.fadeOut(2000);
       $('.new-tweet .error-wrapper').append($errorMsg);
       $errorMsg.fadeOut(3000, function() { this.remove(); });
+      $errorMsg.addClass('float-away');
     } else {
       // post and clear form
       let postField = $parent.serialize();

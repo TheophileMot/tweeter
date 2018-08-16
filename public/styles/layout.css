@@ -50,3 +50,8 @@ main {
 .error-wrapper {
   position: absolute;
 }
+
+.float-away {
+  top: -100px;
+  transition: top 10s;
+}
