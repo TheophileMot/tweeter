@@ -5,8 +5,11 @@
  */
 
 function rot13(text) {
-  let rotText = text.replace(/[A-Z]/g, c => String.fromCharCode((c.charCodeAt() - 52) % 26 + 65));
-  rotText = rotText.replace(/[a-z]/g, c => String.fromCharCode((c.charCodeAt() - 84) % 26 + 97));
+  let rotText  = text.replace(/[a-z]/g, c => 'abcdefghijklmnopqrstuvwxyz'['nopqrstuvwxyzabcdefghijklm'.indexOf(c)]);
+  rotText  = rotText.replace(/[а-я]/g, c => 'абвгдежзийклмнопрстуфхцчшщъыьэюя'['рстуфхцчшщъыьэюяабвгдежзийклмноп'.indexOf(c)]);
+  rotText  = rotText.replace(/[A-Z]/g, c => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'['NOPQRSTUVWXYZABCDEFGHIJKLM'.indexOf(c)]);
+  rotText  = rotText.replace(/[А-Я]/g, c => 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ'['РСТУФХЦЧШЩЪЫЬЭЮЯАБВГДЕЖЗИЙКЛМНОП'.indexOf(c)]);
+  
   return rotText;
 }
 
