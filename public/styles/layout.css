@@ -45,6 +45,7 @@ main {
   left: 200px;
   width: 200px;
   top: -20px;
+  transform: rotate(0deg);
 }
 
 .error-wrapper {
@@ -53,5 +54,6 @@ main {
 
 .float-away {
   top: -100px;
-  transition: top 10s;
+  transition: top 10s, transform 10s;
+  transform: rotate(15deg);
 }

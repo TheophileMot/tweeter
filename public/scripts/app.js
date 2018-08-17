@@ -10,7 +10,22 @@ function createErrorMessage(msg) {
 
 function howLongAgo(time) {
   let age = new Date() - time;
-  return (age / (365 * 24 * 60 * 60 * 1000)).toPrecision(3) + ' years ago';
+
+  let seconds = age / 1000;
+  let minutes = seconds / 60;
+  let hours = minutes / 60;
+  let days = hours / 24;
+  let weeks = days / 7;
+  let years = weeks / 52;
+  
+  let timeSpans = [years, weeks, days, hours, minutes, seconds];
+  let timeAbbrs = 'ywdhms';
+  for (let i in timeSpans) {
+    if (timeSpans[i] > 1) {
+      return timeSpans[i].toPrecision(2) + timeAbbrs[i] + ' ago';
+    }
+  }
+  return 'just now';
 }
 
 function createTweetElement(tweet) {

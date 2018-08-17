@@ -27,7 +27,6 @@ function postNewTweet($parent, $textarea) {
   validateTweet($textarea.val(), (err) => {
     if (err) {
       let $errorMsg = createErrorMessage(err);
-      //$errorMsg.
       $errorMsg.fadeOut(2000);
       $('.new-tweet .error-wrapper').append($errorMsg);
       $errorMsg.fadeOut(3000, function() { this.remove(); });
