@@ -59,8 +59,8 @@ function createTweetElement(tweet) {
 
     // set up ROT13 trigger for clicking on flag icon
     let $footer_span_icons_recycle = $('<i>').addClass('fas fa-recycle').click(function() {
-      let $message = $(this).parent().parent().siblings('div');
       $message.text(rot13($message.text()));
+      $header_h2_username.toggleClass('flipped');
     });
 
     $footer_span_icons.append('<i class="fas fa-flag"></i> ');
