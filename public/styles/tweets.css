@@ -42,12 +42,12 @@ section.tweet-list article:hover .username {
 
 section.tweet-list .handle {
   float: right;
-  color: #889
+  color: #889;
 }
 
 section.tweet-list article:hover .handle {
   float: right;
-  color: #555
+  color: #555;
 }
 
 section.tweet-list div.message {
@@ -59,7 +59,8 @@ section.tweet-list div.message {
 section.tweet-list footer {
   line-height: 2em;
   padding: 0 10px;
-  background-color: #fff
+  background-color: #fff;
+  font-size: 0.8em;
 }
 
 section.tweet-list footer .icons {

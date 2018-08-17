@@ -4,6 +4,12 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+function rot13(text) {
+  let rotText = text.replace(/[A-Z]/g, c => String.fromCharCode((c.charCodeAt() - 52) % 26 + 65));
+  rotText = rotText.replace(/[a-z]/g, c => String.fromCharCode((c.charCodeAt() - 84) % 26 + 97));
+  return rotText;
+}
+
 function createErrorMessage(msg) {
   return $('<p>').addClass('error-msg').text(msg);
 }
@@ -50,7 +56,16 @@ function createTweetElement(tweet) {
     let $footer = $('<footer>');
     let $footer_span_date = $('<span>').addClass('date').text(howLongAgo(tweet.createdAt));
     let $footer_span_icons = $('<span>').addClass('icons');
-    $footer_span_icons.append('<i class="fas fa-flag"></i> <i class="fas fa-recycle"></i> <i class="fas fa-heart"></i>');
+
+    // set up ROT13 trigger for clicking on flag icon
+    let $footer_span_icons_recycle = $('<i>').addClass('fas fa-recycle').click(function() {
+      let $message = $(this).parent().parent().siblings('div');
+      $message.text(rot13($message.text()));
+    });
+
+    $footer_span_icons.append('<i class="fas fa-flag"></i> ');
+    $footer_span_icons.append($footer_span_icons_recycle);
+    $footer_span_icons.append(' <i class="fas fa-heart"></i>');
     $footer.append($footer_span_date, $footer_span_icons);
 
     let $img = $('<img>');
@@ -84,7 +99,7 @@ function refreshAndRender(tweetData) {
 
 // load up to n tweets and run a callback function on them after an optional filter
 //   default callback function clears the tweet container then renders the loaded tweets
-function loadTweets(maxTweets = 5, callback = tweetData => refreshAndRender(tweetData), filterFun = () => true) {
+function loadTweets(maxTweets = 10, callback = tweetData => refreshAndRender(tweetData), filterFun = () => true) {
   return $.get('/tweets/')
     .done(function(data) {
       callback(data.slice(-maxTweets).filter( d => filterFun(d) ));
@@ -103,9 +118,9 @@ $(document).ready(function() {
   $textarea.bind('cut', () => setTimeout(() => updateCounter($textarea), 10));
   $textarea.bind('paste', () => setTimeout(() => updateCounter($textarea), 10));
 
-  $('#nav-bar .button').on('click', function() {
-    $('main .new-tweet').slideToggle(200, () => $('main .new-tweet textarea').focus());
-  });
+  $('#nav-bar .button').click(() =>
+    $('.new-tweet').slideToggle(200, () => $('.new-tweet textarea').focus())
+  );
 
   loadTweets();
 });

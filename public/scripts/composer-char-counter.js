@@ -27,7 +27,6 @@ function postNewTweet($parent, $textarea) {
   validateTweet($textarea.val(), (err) => {
     if (err) {
       let $errorMsg = createErrorMessage(err);
-      $errorMsg.fadeOut(2000);
       $('.new-tweet .error-wrapper').append($errorMsg);
       $errorMsg.fadeOut(3000, function() { this.remove(); });
       $errorMsg.addClass('float-away');
@@ -43,7 +42,24 @@ function postNewTweet($parent, $textarea) {
 }
 
 $(document).ready(function() {
-  $('.new-tweet form textarea').keyup(function(event) {
+  let $textarea = $('.new-tweet form textarea');
+
+  $textarea.keyup(function(event) {
     updateCounter($(this));
   });
+
+  // enter key will submit tweet instead of adding a line break;
+  // meta+r triggers ROT13
+  $textarea.keypress(function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      let $composeForm = $('.new-tweet form');
+      postNewTweet($composeForm, $composeForm.children('textarea'));
+    } else if (event.key === 'r' && event.metaKey) {
+      event.preventDefault();
+      $textarea.val(rot13($textarea.val()));
+    }
+  });
+
+  updateCounter($textarea);
 });

@@ -6,8 +6,16 @@ section.new-tweet {
 }
 
 section.new-tweet h2 {
+  float: left;
   border-bottom: 1px solid #999;
   margin: 0;
+}
+
+section.new-tweet h3 {
+  float: right;
+  margin: 0;
+  font-weight: normal;
+  font-size: 0.8em;
 }
  
 section.new-tweet textarea {
@@ -33,4 +41,24 @@ section.new-tweet .too-long {
 section.new-tweet .way-too-long {
   color: #F00;
   font-weight: bold;
+}
+
+.error-msg {
+  color: #d00;
+  position: absolute;
+  float: right;
+  left: 80px;
+  width: 200px;
+  top: -50px;
+  transform: rotate(0deg);
+}
+
+.error-wrapper {
+  position: absolute;
+}
+
+.float-away {
+  top: -160px;
+  transform: rotate(15deg);
+  transition: top 10s, transform 10s;
 }

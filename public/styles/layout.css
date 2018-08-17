@@ -37,23 +37,3 @@ main {
   padding-top: 2em;
   padding-bottom: 2em;
 }
-
-.error-msg {
-  color: #d00;
-  position: absolute;
-  float: right;
-  left: 200px;
-  width: 200px;
-  top: -20px;
-  transform: rotate(0deg);
-}
-
-.error-wrapper {
-  position: absolute;
-}
-
-.float-away {
-  top: -100px;
-  transition: top 10s, transform 10s;
-  transform: rotate(15deg);
-}
