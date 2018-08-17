@@ -16,6 +16,7 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/filter-tweets.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
 
@@ -25,6 +26,7 @@
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+    <script type="text/javascript" src="/scripts/filter-tweets.js"></script>
 
   </head>
 
@@ -43,10 +45,21 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
 
+      <section class="filter-tweets">
+        <div>
+          <label>Filter:</label>
+          <input type="text" id="user-filter">
+        </div>
+      </section>
+
       <section class="new-tweet">
         <div class="error-wrapper"></div>
         <h2>Compose Tweet</h2>
-        <h3>Hint: ⌘R for ROT13</h3>
+        <span>
+          <h3>Hints: ⌘R for ROT13</h3>
+          <br>
+          <h3>Enter to submit</h3>
+        </span>
         <form action="/tweets/" method="POST">
           <textarea name="text" placeholder="What are you humming about?"></textarea>
           <input type="submit" value="Tweet">

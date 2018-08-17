@@ -34,7 +34,7 @@ section.tweet-list .username {
   float: left;
   margin: 10px;
   color: #889;
-  transition: transform 0.25s;
+  transition: transform 0.5s;
 }
 
 section.tweet-list article:hover .username {
@@ -55,6 +55,7 @@ section.tweet-list div.message {
   background-color: #fff;
   padding: 10px;
   border-bottom: #eee 1px solid;
+  transition: transform 0.5s;
 }
 
 section.tweet-list footer {
@@ -74,6 +75,10 @@ section.tweet-list article:hover footer .icons {
   float: right;
 }
 
-.flipped {
+.flipped-180 {
   transform: rotate(180deg);
+}
+
+.flipped-360 {
+  transform: rotate(360deg);
 }

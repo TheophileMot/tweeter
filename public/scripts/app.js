@@ -4,6 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// ROT13 to obfuscate / deobfuscate text: rotate through half the alphabet
 function rot13(text) {
   let rotText  = text.replace(/[a-z]/g, c => 'abcdefghijklmnopqrstuvwxyz'['nopqrstuvwxyzabcdefghijklm'.indexOf(c)]);
   rotText  = rotText.replace(/[а-я]/g, c => 'абвгдежзийклмнопрстуфхцчшщъыьэюя'['рстуфхцчшщъыьэюяабвгдежзийклмноп'.indexOf(c)]);
@@ -13,10 +14,12 @@ function rot13(text) {
   return rotText;
 }
 
+// create DOM element with error message
 function createErrorMessage(msg) {
   return $('<p>').addClass('error-msg').text(msg);
 }
 
+// simple text for age of message in human-readable format, e.g., '13m ago'
 function howLongAgo(time) {
   let age = new Date() - time;
 
@@ -37,8 +40,11 @@ function howLongAgo(time) {
   return 'just now';
 }
 
+// use jQuery to construct tweet
 function createTweetElement(tweet) {
-  // check whether database object has the right fields
+  // first check whether database object has the right fields
+  // (this is only surface-level; to be safer, we could check for deeper structure,
+  //   e.g., tweet.user.avatars.small, etc.)
   if (!tweet.user || !tweet.content || !tweet.createdAt) {
     for (let prop of ['user', 'content', 'createdAt']) {
       if (!tweet[prop]) { console.log(`Database error! Property ${prop} missing in db entry ${tweet._id}`); }
@@ -63,7 +69,8 @@ function createTweetElement(tweet) {
     // set up ROT13 trigger for clicking on flag icon
     let $footer_span_icons_recycle = $('<i>').addClass('fas fa-recycle').click(function() {
       $message.text(rot13($message.text()));
-      $header_h2_username.toggleClass('flipped');
+      $message.toggleClass('flipped-360');
+      $header_h2_username.toggleClass('flipped-180');
     });
 
     $footer_span_icons.append('<i class="fas fa-flag"></i> ');
@@ -86,30 +93,33 @@ function renderTweets(tweetData) {
     tweetData.forEach( tweet => renderTweets(tweet) );
   } else {
     let $tweetElement = createTweetElement(tweetData);
-    if ($tweetElement) {
-      $('section.tweet-list').prepend($tweetElement);
-    } else {
-      $('section.tweet-list').prepend($tweetElement);
-      //
-    }
+    $('section.tweet-list').prepend($tweetElement);
   }
 }
 
+// default callback function for loadTweets: clear tweets and render again
 function refreshAndRender(tweetData) {
   $('section.tweet-list').text('');
   renderTweets(tweetData);
 }
 
-// load up to n tweets and run a callback function on them after an optional filter
-//   default callback function clears the tweet container then renders the loaded tweets
-function loadTweets(maxTweets = 10, callback = tweetData => refreshAndRender(tweetData), filterFun = () => true) {
+// load all tweets, filter them, and take the latest n; then run a callback function
+//   - the default callback function clears the tweet container then renders the loaded tweets;
+//   - the default filter looks at the user filter (above the 'compose') section and applies it as
+//     a regular expression
+function loadTweets(maxTweets = 10, callback = refreshAndRender, filterFun = filterByUserFilter) {
   return $.get('/tweets/')
     .done(function(data) {
-      callback(data.slice(-maxTweets).filter( d => filterFun(d) ));
+      callback(data.filter( d => filterFun(d) ).slice(-maxTweets));
     });
 }
 
+// when DOM is ready, set up triggers (see also triggers in composer-char-counter.js and filter-tweets.js):
+//   - submit new tweet
+//   - cut/paste in new tweet
+//   - click on compose button in top right
 $(document).ready(function() {
+  // new tweet: prevent default form submission; use custom function to post
   let $composeForm = $('.new-tweet form');
   $composeForm.submit(function(event) {
     event.preventDefault();
@@ -121,9 +131,16 @@ $(document).ready(function() {
   $textarea.bind('cut', () => setTimeout(() => updateCounter($textarea), 10));
   $textarea.bind('paste', () => setTimeout(() => updateCounter($textarea), 10));
 
+  // click on compose button toggle submission form
   $('#nav-bar .button').click(() =>
     $('.new-tweet').slideToggle(200, () => $('.new-tweet textarea').focus())
   );
 
+  // clear user filter
+  let $userFilter = $('.filter-tweets #user-filter');
+  $userFilter.val('');
+
+  // load the tweets, and reload every 30s
   loadTweets();
+  setInterval(() => loadTweets(), 30 * 1000);
 });

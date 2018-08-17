@@ -1,3 +1,4 @@
+// update counter (text + style) for # characters remaining
 function updateCounter($textarea) {
   let counter = $textarea.siblings('.counter');
   counter.text(140 - $textarea.val().length);
@@ -11,6 +12,8 @@ function updateCounter($textarea) {
   }
 }
 
+// process tweet according to callback function, depending on
+//   whether its length is acceptable (1-140 chars)
 function validateTweet(tweet, callback) {
   if (!tweet.length) {
     callback('Your message cannot be empty.');
@@ -23,6 +26,7 @@ function validateTweet(tweet, callback) {
   }
 }
 
+// post new tweet to server if it is valid
 function postNewTweet($parent, $textarea) {
   validateTweet($textarea.val(), (err) => {
     if (err) {
@@ -41,9 +45,12 @@ function postNewTweet($parent, $textarea) {
   });
 }
 
+// when DOM loads, refresh counter and set up triggers for key up / key press
 $(document).ready(function() {
   let $textarea = $('.new-tweet form textarea');
+  updateCounter($textarea);
 
+  // if any key is pressed in text area, update character counter
   $textarea.keyup(function(event) {
     updateCounter($(this));
   });
@@ -60,6 +67,4 @@ $(document).ready(function() {
       $textarea.val(rot13($textarea.val()));
     }
   });
-
-  updateCounter($textarea);
 });

@@ -1,0 +1,15 @@
+section.filter-tweets {
+  background-color: #eee;
+  padding: 5px;
+}
+
+section.filter-tweets label {
+  float: left;
+  margin: 5px;
+}
+
+section.filter-tweets input {
+  margin-left: 10px;
+  width: 75%;
+  resize: none;
+}
