@@ -22,6 +22,7 @@ The user can ROT13 any tweet by clicking on the 'recycle' icon at the bottom rig
 - functional 'flag' and 'like' buttons
 - ROT13 for more alphabets
 - the regular expression input should indicate whether the expression is valid or not (e.g., by making the background of the input form red)
+- other custom filters, e.g., by date, user, etc.
 
 ## Design issues
 - the filter and compose sections scroll with the page; it might better to have them fixed in place

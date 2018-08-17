@@ -46,9 +46,6 @@ function createTweetElement(tweet) {
   // (this is only surface-level; to be safer, we could check for deeper structure,
   //   e.g., tweet.user.avatars.small, etc.)
   if (!tweet.user || !tweet.content || !tweet.createdAt) {
-    for (let prop of ['user', 'content', 'createdAt']) {
-      if (!tweet[prop]) { console.log(`Database error! Property ${prop} missing in db entry ${tweet._id}`); }
-    }
     return $('<article>check your database for errors</article>');
   } else {
     let $tweet = $('<article>');
