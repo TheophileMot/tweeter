@@ -2,6 +2,13 @@
 
 Tweeter is a simple, single-page Twitter clone. In its current demo state, user names are randomly generated; ultimately, of course, it would allow users to register and log in / out.
 
+## Screenshots
+
+!["Main page"](https://github.com/TheophileMot/tweeter/blob/master/docs/main%20page.png)
+!["Error when tweet is too long"](https://github.com/TheophileMot/tweeter/blob/master/docs/too%20long.png)
+!["Regular expression filter"](https://github.com/TheophileMot/tweeter/blob/master/docs/regex.png)
+!["ROT13 button with animation"](https://github.com/TheophileMot/tweeter/blob/master/docs/rot13.png)
+
 ## Features
 
 The app captures key presses in the 'new tweet' form to update a 'characters remaining' counter, to submit the tweet on Enter, and to obfuscate or deobfuscate using ROT13 on ⌘R (this overrides any default browser action, e.g., 'refresh page' in Firefox). ROT13 is currently implemented for English and Russian alphabets; in the latter case, since Russian has an odd number (33) of letters in the alphabet, ё has been left out of the transformation.
