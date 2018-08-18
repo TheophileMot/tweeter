@@ -1,0 +1,88 @@
+@import 'colours';
+
+section.tweet-list {
+  article {
+    background-color: $col-main;
+    border-radius: 5px;
+    border: $col-main 2px solid;
+    margin: 2em;
+    word-wrap: break-word;
+  }
+
+  article:hover {
+    background-color: $col-main-shade;
+    border: $col-midtone 2px solid;
+  }
+
+  header {
+    margin: 5px;
+    height: 50px;
+  }
+
+  img {
+    border-radius: 5px;
+    opacity: 0.5;
+  }
+
+  article:hover img {
+    border-radius: 5px;
+    opacity: 1;
+  }
+
+  .avatar {
+    float: left;
+  }
+
+  .username {
+    float: left;
+    margin: 10px;
+    color: $col-midtone;
+    transition: transform 0.5s;
+  }
+
+  article:hover .username {
+    color: $col-darktone;
+  }
+
+  .handle {
+    float: right;
+    color: $col-midtone;
+  }
+
+  article:hover .handle {
+    float: right;
+    color: $col-darktone;
+  }
+
+  div.message {
+    background-color: $col-background;
+    padding: 10px;
+    border-bottom: $col-main 1px solid;
+    transition: transform 0.5s;
+  }
+
+  footer {
+    line-height: 2em;
+    padding: 0 10px;
+    background-color: $col-background;
+    font-size: 0.8em;
+  }
+
+  footer .icons {
+    visibility: hidden;
+  }
+
+  article:hover footer .icons {
+    opacity: 0.85;
+    visibility: visible;
+    float: right;
+  }
+}
+
+.flipped-180 {
+  transform: rotate(180deg);
+}
+
+.flipped-360 {
+  transform: rotate(360deg);
+}

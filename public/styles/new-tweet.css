@@ -4,20 +4,17 @@ section.new-tweet {
   padding: 20px;
   margin: 2em;
 }
-
 section.new-tweet h2 {
   float: left;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid #244751;
   margin: 0;
 }
-
 section.new-tweet h3 {
   float: right;
   margin: 0;
   font-weight: normal;
   font-size: 0.8em;
 }
- 
 section.new-tweet textarea {
   padding: 10px;
   width: 100%;
@@ -25,21 +22,17 @@ section.new-tweet textarea {
   margin: 1em 0;
   resize: none;
 }
-
 section.new-tweet .counter {
   float: right;
 }
-
 section.new-tweet .almost-too-long {
-  color: #D80;
+  color: #d80;
 }
-
 section.new-tweet .too-long {
-  color: #D00;
+  color: #d00;
 }
-
 section.new-tweet .way-too-long {
-  color: #F00;
+  color: #f00;
   font-weight: bold;
 }
 
@@ -62,3 +55,5 @@ section.new-tweet .way-too-long {
   transform: rotate(15deg);
   transition: top 10s, transform 10s;
 }
+
+

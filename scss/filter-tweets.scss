@@ -1,0 +1,17 @@
+@import 'colours';
+
+section.filter-tweets {
+  background-color: $col-main;
+  padding: 5px;
+
+  label {
+    float: left;
+    margin: 5px;
+  }
+
+  input {
+    margin-left: 10px;
+    width: 75%;
+    resize: none;
+  }
+}

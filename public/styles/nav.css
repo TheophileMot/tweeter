@@ -1,10 +1,5 @@
-/*
- ...
- 
-}
-*/
- #nav-bar {
-  background-color: #00A087;
+#nav-bar {
+  background-color: #00a087;
   color: #e8fdff;
   position: fixed;
   left: 0;
@@ -12,24 +7,22 @@
   top: 0;
   height: 80px;
   padding: 0 2em;
+  z-index: 1;
 }
-
 #nav-bar .logo {
   position: relative;
   height: 80px;
   float: left;
 }
-
 #nav-bar .header {
   float: left;
   margin-left: 10px;
   font-size: 2em;
   line-height: 2.5;
 }
-
 #nav-bar .button {
-  background-color: #C0E0E8;
-  color: #00A087;
+  background-color: #c0e0e8;
+  color: #00a087;
   border-radius: 10px;
   float: right;
   padding: 10px;
@@ -40,5 +33,7 @@
 }
 
 #nav-bar:hover .button {
-  background-color: #E0F0F4;
+  background-color: #e8fdff;
 }
+
+/*# sourceMappingURL=nav.css.map */
